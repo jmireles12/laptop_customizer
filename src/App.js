@@ -70,7 +70,7 @@ class App extends Component {
             selected={this.state.selected}
             usCurrency={USCurrencyFormat}
             updateFeature={(feature, item)=> this.updateFeature(feature, item)}/>
-          <Cart key={this.key} summary={summary} selected={this.state.selected} USCurrencyFormat={USCurrencyFormat}/>
+          <Cart summary={summary} selected={this.state.selected} USCurrencyFormat={USCurrencyFormat}/>
         </main>
       </div>
     );
