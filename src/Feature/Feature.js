@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import slugify from 'slugify';
+import FeatureName from '../FeatureName/FeatureName';
+import FeatureItem from '../FeatureItem/FeatureItem';
 
 class Feature extends Component {
     render() {
@@ -9,27 +11,23 @@ class Feature extends Component {
                 const itemHash = slugify(JSON.stringify(item));
                 return (
                     <div key={itemHash} className="feature__item">
-                        <input
-                            type="radio"
-                            id={itemHash}
-                            className="feature__option"
-                            name={slugify(feature)}
-                            checked={item.name === this.props.selected[feature].name}
-                            onChange={e => this.props.updateFeature(feature, item)}
+                        <FeatureItem
+                            updateFeature={this.props.updateFeature}
+                            usCurrency={this.props.usCurrency}
+                            item={item}
+                            selected={this.props.selected}
+                            feature={feature}
+                            features={features}
+                            featureHash={featureHash}
+                            options={options}
+                            itemHash={itemHash}
                         />
-                        <label htmlFor={itemHash} className="feature__label">
-                            {item.name} ({this.props.usCurrency.format(item.cost)})
-                        </label>
+                        
                     </div>
                 );
             });
             return (
-                <fieldset className="feature" key={featureHash}>
-                    <legend className="feature__name">
-                        <h3>{feature}</h3>
-                    </legend>
-                    {options}
-                </fieldset>
+                <FeatureName key={idx} featureHash={featureHash} feature={feature} options={options}/>
             )
         })
         return (

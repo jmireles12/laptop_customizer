@@ -6,7 +6,6 @@ import './App.css';
 import Header from './Header/Header';
 import Form from './Form/Form';
 import Cart from './Cart/Cart';
-import Option from './Option/Option'
 
 // This object will allow us to
 // easily convert numbers into US dollar values
@@ -49,28 +48,21 @@ class App extends Component {
   };
 
   render() {
-    
-
-    const summary = Object.keys(this.state.selected).map((feature, idx) => {
-      const featureHash = feature + '-' + idx;
-      const selectedOption = this.state.selected[feature];
-
-      return (
-        <div>
-          <Option USCurrencyFormat={USCurrencyFormat} feature={feature} summary={summary} featureHash={featureHash} selectedOption={selectedOption} />
-        </div>
-      );
-    });
 
     return (
       <div className="App">
         <Header />
         <main>
-          <Form features={this.props.features}
+          <Form 
+            features={this.props.features}
             selected={this.state.selected}
             usCurrency={USCurrencyFormat}
-            updateFeature={(feature, item)=> this.updateFeature(feature, item)}/>
-          <Cart summary={summary} selected={this.state.selected} USCurrencyFormat={USCurrencyFormat}/>
+            updateFeature={(feature, item)=> this.updateFeature(feature, item)}
+          />
+          <Cart 
+            selected={this.state.selected}
+            USCurrencyFormat={USCurrencyFormat}
+          />
         </main>
       </div>
     );
